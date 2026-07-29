@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>aktien.kauf – Podcast für erfolgreiches Investieren</title>
+<style>
+  :root{
+    --bg:#0a0b0d;
+    --bg-card:#151619;
+    --bg-card-2:#1c1d21;
+    --gold:#d4a017;
+    --gold-light:#e8ba3f;
+    --text:#f5f4f0;
+    --muted:#9a9a9f;
+    --border:#2a2b2f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    text-transform:uppercase;
+    letter-spacing:.18em;
+    font-size:12px;
+    font-weight:700;
+    color:var(--gold);
+    margin-bottom:10px;
+    display:block;
+  }
+  h1,h2,h3{font-weight:800;letter-spacing:-0.01em;}
+  section{padding:88px 0;}
+  @media(max-width:600px){section{padding:56px 0;}}
+  .muted{color:var(--muted);}
+
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(10,11,13,.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 0;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;}
+  .brand .dot{color:var(--gold);}
+  .navlinks{display:flex;gap:32px;font-size:14px;font-weight:600;color:var(--muted);}
+  .navlinks a:hover{color:var(--text);}
+  .nav-cta{
+    background:var(--gold);color:#141414;font-weight:700;font-size:14px;
+    padding:10px 20px;border-radius:6px;
+  }
+  .nav-cta:hover{background:var(--gold-light);}
+  @media(max-width:760px){.navlinks{display:none;}}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    min-height:520px;
+    display:flex;align-items:center;
+    padding:120px 0 80px;
+    overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute;inset:0;
+    opacity:.5;
+    background-image:url('data:image/jpeg;base64,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');
+    background-size:cover;background-position:center top;
+    filter:saturate(1.05);
+  }
+  .hero-overlay{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(8,9,10,.78) 0%, rgba(8,9,10,.88) 45%, rgba(8,9,10,.98) 100%);
+  }
+  .hero-content{position:relative;z-index:2;max-width:680px;}
+  .hero h1{
+    font-size:56px;line-height:1.02;margin-bottom:20px;
+    text-shadow:0 4px 30px rgba(0,0,0,.4);
+  }
+  .hero h1 span{color:var(--gold);}
+  .hero p.lead{
+    font-size:19px;color:#dcdcdc;max-width:520px;margin-bottom:34px;
+  }
+  @media(max-width:600px){
+    .hero{min-height:auto;padding:100px 0 60px;}
+    .hero h1{font-size:34px;}
+    .hero p.lead{font-size:16px;}
+  }
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:28px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:13px 22px;border-radius:8px;font-weight:700;font-size:14.5px;
+    border:1px solid transparent;transition:transform .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--gold);color:#141414;}
+  .btn-primary:hover{background:var(--gold-light);}
+  .btn-outline{border-color:rgba(255,255,255,.35);color:#fff;}
+  .btn-outline:hover{background:rgba(255,255,255,.08);}
+  .trust-line{display:flex;align-items:center;gap:10px;font-size:14px;color:#c9c9c9;}
+  .stars{color:var(--gold);letter-spacing:2px;font-size:16px;}
+
+  /* STATS STRIP */
+  .stats{
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    background:var(--bg-card);
+    padding:56px 0;
+  }
+  .stats-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;
+  }
+  @media(max-width:760px){.stats-grid{grid-template-columns:repeat(2,1fr);}}
+  .stat-num{font-size:38px;font-weight:800;color:var(--gold);}
+  .stat-label{font-size:13.5px;color:var(--muted);margin-top:6px;}
+
+  /* ABOUT / HOSTS */
+  .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:start;}
+  @media(max-width:860px){.about-grid{grid-template-columns:1fr;}}
+  .about-text h2{font-size:34px;margin-bottom:18px;}
+  .about-text p{color:#c7c7c7;font-size:16px;margin-bottom:16px;max-width:520px;}
+  .hosts{display:flex;flex-direction:column;gap:18px;}
+  .host-card{
+    background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+    padding:22px;display:flex;gap:16px;align-items:center;
+  }
+  .avatar{
+    width:56px;height:56px;border-radius:50%;
+    background:linear-gradient(135deg,var(--gold),#8a6a12);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;color:#141414;font-size:17px;flex:none;
+  }
+  .host-card h4{font-size:16px;margin-bottom:3px;}
+  .host-card p{font-size:13.5px;color:var(--muted);}
+
+  /* EPISODES */
+  .ep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:36px;}
+  @media(max-width:860px){.ep-grid{grid-template-columns:1fr;}}
+  .ep-card{
+    background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+    padding:24px;display:flex;flex-direction:column;height:100%;
+  }
+  .ep-meta{font-size:12.5px;color:var(--muted);margin-bottom:10px;display:flex;gap:10px;}
+  .ep-card h4{font-size:16.5px;margin-bottom:10px;line-height:1.3;}
+  .ep-card p{font-size:13.5px;color:#b7b7b7;margin-bottom:18px;flex:1;}
+  .ep-link{font-size:13px;font-weight:700;color:var(--gold);display:inline-flex;align-items:center;gap:6px;}
+
+  /* REELS */
+  .reels{background:var(--bg-card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .reels-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:32px;}
+  .reel-grid{
+    display:flex;gap:14px;overflow-x:auto;padding-bottom:6px;
+    scroll-snap-type:x proximity;
+  }
+  .reel-tile{
+    position:relative;aspect-ratio:9/16;border-radius:10px;overflow:hidden;
+    background:linear-gradient(155deg,#26272b,#141518 60%);
+    border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;
+    flex:0 0 150px;scroll-snap-align:start;
+  }
+  @media(max-width:600px){.reel-tile{flex-basis:118px;}}
+  .reel-tile:after{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(circle at 50% 40%, rgba(212,160,23,.18), transparent 60%);
+  }
+  .play-ico{
+    width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.12);
+    display:flex;align-items:center;justify-content:center;z-index:1;
+    border:1px solid rgba(255,255,255,.25);
+  }
+  .play-ico svg{width:12px;height:12px;fill:#fff;margin-left:2px;}
+
+  /* PARTNER / KOOPERATION */
+  .partner-strip{
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;
+    background:var(--bg-card-2);border:1px solid var(--border);border-radius:14px;padding:32px;margin-top:8px;
+  }
+  .partner-strip .left{display:flex;align-items:center;gap:18px;}
+  .partner-logo{
+    background:#101114;border:1px solid var(--border);border-radius:8px;
+    padding:10px 18px;font-weight:800;font-size:15px;color:#e7e7e7;
+  }
+
+  /* ROAST MY DEPOT */
+  .roast{background:var(--bg-card-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .roast-box{
+    display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap;
+  }
+  .roast-box .copy{max-width:560px;}
+  .roast-box h2{font-size:32px;margin-bottom:14px;}
+  .roast-box p{color:#c7c7c7;font-size:15.5px;margin-bottom:10px;}
+  .roast-points{display:flex;gap:22px;flex-wrap:wrap;margin-top:18px;}
+  .roast-points span{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px;}
+  .roast-points span:before{content:'✓';color:var(--gold);font-weight:800;}
+  .btn-large{padding:18px 34px;font-size:16px;border-radius:10px;white-space:nowrap;}
+  @media(max-width:700px){
+    .roast-box{flex-direction:column;align-items:flex-start;}
+    .btn-large{width:100%;text-align:center;}
+  }
+
+  /* FOOTER */
+  footer{padding:56px 0 32px;border-top:1px solid var(--border);}
+  .footer-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px;margin-bottom:36px;}
+  .footer-col{flex:1 1 160px;}
+  .footer-col h5{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:14px;}
+  .footer-col a{display:block;font-size:14px;color:#d5d5d5;margin-bottom:9px;}
+  .footer-col a:hover{color:var(--gold);}
+  .disclaimer{
+    font-size:12px;color:#727277;border-top:1px solid var(--border);padding-top:24px;line-height:1.6;
+  }
+  .copyright{font-size:12.5px;color:#67676c;margin-top:14px;}
+
+  .section-head{max-width:640px;margin-bottom:40px;}
+  .section-head h2{font-size:32px;}
+  .section-head p{color:var(--muted);font-size:15.5px;margin-top:10px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="brand">Aktien<span class="dot">.</span>kauf</div>
+      <div class="navlinks">
+        <a href="#ueber">Über uns</a>
+        <a href="#folgen">Folgen</a>
+        <a href="#roast">Roast my Depot</a>
+        <a href="#reels">Reels</a>
+        <a href="#kooperation">Kooperation</a>
+      </div>
+      <a class="nav-cta" href="#hoeren">Jetzt hören</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="hoeren">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="wrap">
+    <div class="hero-content">
+      <span class="eyebrow">Finanzpodcast · Frankfurt</span>
+      <h1>Der Weg zur <span>finanziellen Freiheit</span> – jede Woche neu.</h1>
+      <p class="lead">Aktienanalysen, Dividendenstrategien und ETF-Vergleiche auf den Punkt gebracht. Mit René Zeltner &amp; Sebastian Wurm und Gästen aus der Finanzszene.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://open.spotify.com/show/0EsMOQTkZeyGlObpi49dxA" target="_blank">▶ Auf Spotify hören</a>
+        <a class="btn btn-outline" href="#" target="_blank">Apple Podcasts</a>
+        <a class="btn btn-outline" href="#" target="_blank">YouTube</a>
+      </div>
+      <div class="trust-line">
+        <span class="stars">★★★★★</span>
+        <span><strong>4,4</strong> von 910 Bewertungen auf Spotify</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div>
+        <div class="stat-num">2 Mio.+</div>
+        <div class="stat-label">Gesamtstreams (all-time)</div>
+      </div>
+      <div>
+        <div class="stat-num">70.000+</div>
+        <div class="stat-label">Unique Hörer (H1 2026)</div>
+      </div>
+      <div>
+        <div class="stat-num">36.400+</div>
+        <div class="stat-label">Instagram Follower</div>
+      </div>
+      <div>
+        <div class="stat-num">93%</div>
+        <div class="stat-label">Reichweite in der DACH-Region</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ueber">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-text">
+        <span class="eyebrow">Über den Podcast</span>
+        <h2>Fundierte Aktienanalysen statt heißer Tipps.</h2>
+        <p>Aktien.kauf ist der Podcast für alle, die ihr Geld selbst in die Hand nehmen wollen. Wir analysieren Einzelaktien, vergleichen ETFs und sprechen mit Gästen aus der Finanzwelt – immer auf Basis von Geschäftsberichten, SEC-Filings und offiziellen Zahlen, nie nach Bauchgefühl.</p>
+        <p>Jede Woche neue Folgen zu Themen wie Dividendenstrategien, Bewertungskennzahlen und aktuellen Marktchancen – nüchtern eingeordnet, verständlich erklärt.</p>
+      </div>
+      <div class="hosts">
+        <div class="host-card">
+          <div class="avatar">RZ</div>
+          <div>
+            <h4>René Zeltner</h4>
+            <p>Host &amp; Gründer – Aktienanalysen, Dividendenstrategie</p>
+          </div>
+        </div>
+        <div class="host-card">
+          <div class="avatar">SW</div>
+          <div>
+            <h4>Sebastian Wurm</h4>
+            <p>Co-Host – Portfolio-Einblicke &amp; Marktstrategie</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="folgen">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Aktuelle Folgen</span>
+      <h2>Zuletzt besprochen.</h2>
+    </div>
+    <div class="ep-grid">
+      <div class="ep-card">
+        <div class="ep-meta"><span>26 Min</span><span>·</span><span>Aktienanalyse</span></div>
+        <h4>Dividendenkönig historisch günstig mit 4,2% Dividendenrendite</h4>
+        <p>PepsiCo im Check: Snackgeschäft, Marge im Vergleich zu Coca-Cola und warum die Dividendenrendite so hoch ist wie seit über zehn Jahren nicht mehr.</p>
+        <a class="ep-link" href="https://open.spotify.com/show/0EsMOQTkZeyGlObpi49dxA" target="_blank">Jetzt anhören →</a>
+      </div>
+      <div class="ep-card">
+        <div class="ep-meta"><span>37 Min</span><span>·</span><span>Interview</span></div>
+        <h4>Aldi, Würth und die Strategie deutscher Familienunternehmen – mit Noah Leidinger</h4>
+        <p>Warum Aldi nicht an der Börse ist und wie aus einer kleinen Schraubenhandlung der Weltkonzern Würth wurde.</p>
+        <a class="ep-link" href="https://open.spotify.com/show/0EsMOQTkZeyGlObpi49dxA" target="_blank">Jetzt anhören →</a>
+      </div>
+      <div class="ep-card">
+        <div class="ep-meta"><span>17 Min</span><span>·</span><span>ETF-Vergleich</span></div>
+        <h4>ETF mit 5,1% Dividendenrendite! Diese 2 globalen ETFs könnten dein Portfolio ergänzen</h4>
+        <p>iShares Emerging Markets Dividend vs. SPDR Euro Dividend Aristocrats – Rendite, TER und Bewertung im direkten Vergleich.</p>
+        <a class="ep-link" href="https://open.spotify.com/show/0EsMOQTkZeyGlObpi49dxA" target="_blank">Jetzt anhören →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="roast" id="roast">
+  <div class="wrap">
+    <div class="roast-box">
+      <div class="copy">
+        <span class="eyebrow">Community</span>
+        <h2>Roast my Depot.</h2>
+        <p>Reich dein Portfolio ein und wir nehmen es uns ehrlich vor – ohne Schönfärberei. Ausgewählte Depots besprechen wir anonymisiert direkt in der Folge.</p>
+        <div class="roast-points">
+          <span>Anonym &amp; vertraulich</span>
+          <span>Ehrliches Feedback der Hosts</span>
+          <span>Auswahl wird in der Folge besprochen</span>
+        </div>
+      </div>
+      <!-- TODO: Button verlinkt auf separates Einreichungs-Formular, sobald dieses hinterlegt ist -->
+      <a class="btn btn-primary btn-large" href="#roast-form">Portfolio einreichen</a>
+    </div>
+  </div>
+</section>
+
+<section class="reels" id="reels">
+  <div class="wrap">
+    <div class="reels-head">
+      <div>
+        <span class="eyebrow">Instagram Reels</span>
+        <h2>Die besten Ausschnitte auf Instagram.</h2>
+        <p class="muted">Kurze Highlights aus unseren Folgen – 36.400+ Follower auf @aktien.kauf.</p>
+      </div>
+      <a class="btn btn-outline" href="https://www.instagram.com/aktien.kauf/" target="_blank">Zum Instagram-Profil →</a>
+    </div>
+    <div class="reel-grid">
+      <div class="reel-tile"><div class="play-ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+      <div class="reel-tile"><div class="play-ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+      <div class="reel-tile"><div class="play-ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+      <div class="reel-tile"><div class="play-ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+      <div class="reel-tile"><div class="play-ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="kooperation">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Kooperationen</span>
+      <h2>Für Marken, die eine investitionsaffine Zielgruppe erreichen wollen.</h2>
+      <p class="muted">Werbeintegrationen, die zur Zielgruppe passen – nüchtern und glaubwürdig präsentiert.</p>
+    </div>
+    <div class="partner-strip">
+      <div class="left">
+        <span class="muted" style="font-size:13px;">Vertrauter Kooperationspartner</span>
+        <div class="partner-logo">Consorsbank</div>
+      </div>
+      <a class="btn btn-primary" href="mailto:thorben.plassner98@gmail.com">Kooperationsanfrage senden</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h5>Aktien.kauf</h5>
+        <a href="#ueber">Über uns</a>
+        <a href="#roast">Roast my Depot</a>
+        <a href="#folgen">Folgen</a>
+      </div>
+      <div class="footer-col">
+        <h5>Hören auf</h5>
+        <a href="https://open.spotify.com/show/0EsMOQTkZeyGlObpi49dxA" target="_blank">Spotify</a>
+        <a href="#">Apple Podcasts</a>
+        <a href="#">YouTube</a>
+      </div>
+      <div class="footer-col">
+        <h5>Social &amp; Kontakt</h5>
+        <a href="https://www.instagram.com/aktien.kauf/" target="_blank">Instagram</a>
+        <a href="mailto:thorben.plassner98@gmail.com">Kontakt</a>
+        <a href="https://www.aktienkauf-blog.de/faq" target="_blank">Impressum</a>
+      </div>
+    </div>
+    <div class="disclaimer">
+      Disclaimer gemäß WpHG: Alle Inhalte dieses Podcasts dienen ausschließlich Informations- und Unterhaltungszwecken und stellen keine Anlageberatung, keine Kauf- oder Verkaufsempfehlung dar. Investitionen in Wertpapiere sind mit Risiken verbunden, bis hin zum Totalverlust des eingesetzten Kapitals. Vergangene Wertentwicklungen sind kein verlässlicher Indikator für zukünftige Ergebnisse.
+      <div class="copyright">© 2026 Aktien.kauf – ein Podcast von René Zeltner &amp; Sebastian Wurm (GbR)</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
