@@ -101,6 +101,7 @@
     display:inline-flex;align-items:center;gap:9px;
     padding:13px 22px;border-radius:8px;font-weight:700;font-size:14.5px;
     border:1px solid transparent;transition:transform .15s ease;
+    font-family:inherit;cursor:pointer;
   }
   .btn:hover{transform:translateY(-2px);}
   .btn-primary{background:var(--gold);color:#141414;}
@@ -186,7 +187,8 @@
     display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;
     background:var(--bg-card-2);border:1px solid var(--border);border-radius:14px;padding:32px;margin-top:8px;
   }
-  .partner-strip .left{display:flex;align-items:center;gap:18px;}
+  .partner-strip .left{display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+  .partner-logos{display:flex;gap:12px;flex-wrap:wrap;}
   .partner-logo{
     background:#101114;border:1px solid var(--border);border-radius:8px;
     padding:10px 18px;font-weight:800;font-size:15px;color:#e7e7e7;
@@ -204,8 +206,16 @@
   .roast-points span{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px;}
   .roast-points span:before{content:'✓';color:var(--gold);font-weight:800;}
   .btn-large{padding:18px 34px;font-size:16px;border-radius:10px;white-space:nowrap;}
+  .roast-cta{display:flex;flex-direction:column;align-items:center;gap:10px;flex:none;}
+  .roast-msg{
+    font-size:13px;font-weight:700;color:var(--gold);
+    opacity:0;transform:translateY(-4px);
+    transition:opacity .25s ease, transform .25s ease;
+  }
+  .roast-msg.show{opacity:1;transform:translateY(0);}
   @media(max-width:700px){
     .roast-box{flex-direction:column;align-items:flex-start;}
+    .roast-cta{width:100%;}
     .btn-large{width:100%;text-align:center;}
   }
 
@@ -254,8 +264,8 @@
       <p class="lead">Aktienanalysen, Dividendenstrategien und ETF-Vergleiche auf den Punkt gebracht. Mit René Zeltner &amp; Sebastian Wurm und Gästen aus der Finanzszene.</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="https://open.spotify.com/show/0EsMOQTkZeyGlObpi49dxA" target="_blank">▶ Auf Spotify hören</a>
-        <a class="btn btn-outline" href="#" target="_blank">Apple Podcasts</a>
-        <a class="btn btn-outline" href="#" target="_blank">YouTube</a>
+        <a class="btn btn-outline" href="https://podcasts.apple.com/de/podcast/aktien-kauf/id1487668858" target="_blank">Apple Podcasts</a>
+        <a class="btn btn-outline" href="https://www.youtube.com/@aktien.kauf_Podcast/shorts" target="_blank">YouTube</a>
       </div>
       <div class="trust-line">
         <span class="stars">★★★★★</span>
@@ -359,8 +369,10 @@
           <span>Auswahl wird in der Folge besprochen</span>
         </div>
       </div>
-      <!-- TODO: Button verlinkt auf separates Einreichungs-Formular, sobald dieses hinterlegt ist -->
-      <a class="btn btn-primary btn-large" href="#roast-form">Portfolio einreichen</a>
+      <div class="roast-cta">
+        <button type="button" class="btn btn-primary btn-large" onclick="document.getElementById('roast-msg').classList.add('show')">Portfolio einreichen</button>
+        <span id="roast-msg" class="roast-msg">Ab September verfügbar</span>
+      </div>
     </div>
   </div>
 </section>
@@ -394,8 +406,11 @@
     </div>
     <div class="partner-strip">
       <div class="left">
-        <span class="muted" style="font-size:13px;">Vertrauter Kooperationspartner</span>
-        <div class="partner-logo">Consorsbank</div>
+        <span class="muted" style="font-size:13px;">Vertraute Kooperationspartner</span>
+        <div class="partner-logos">
+          <div class="partner-logo">Consorsbank</div>
+          <div class="partner-logo">Parqet</div>
+        </div>
       </div>
       <a class="btn btn-primary" href="mailto:thorben.plassner98@gmail.com">Kooperationsanfrage senden</a>
     </div>
