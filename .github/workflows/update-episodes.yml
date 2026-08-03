@@ -1,0 +1,37 @@
+name: Update episodes from RSS feed
+
+on:
+  schedule:
+    # Every Monday at 06:00 UTC — a day after the usual Sunday episode drop
+    - cron: "0 6 * * 1"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update-episodes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Update episode cards from RSS feed
+        run: python3 update_episodes.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "aktien-kauf-bot"
+          git config user.email "actions@users.noreply.github.com"
+          if git diff --quiet; then
+            echo "No changes to commit."
+          else
+            git add index.html
+            git commit -m "Automatisches Update: aktuelle Folgen aus RSS-Feed"
+            git push
+          fi
